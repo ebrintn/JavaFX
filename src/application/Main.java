@@ -1,32 +1,19 @@
 package application;
 	
 import javafx.application.Application;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.StackPane;
+import javafx.fxml.FXMLLoader;
 
 
-public class Main extends Application implements EventHandler<ActionEvent> {
-	Button button;
-	
+public class Main extends Application {
 	@Override
 	public void start(Stage primaryStage) {
 		try {
-			button = new Button();
-			button.setText("Click Me");
-			button.setOnAction(this);
-
-			StackPane root = new StackPane();
-			root.getChildren().add(button);
-
-			Scene scene = new Scene(root,400,400);
+			BorderPane root = (BorderPane)FXMLLoader.load(getClass().getResource("Sample.fxml"));
+			Scene scene = new Scene(root,800,500);
 			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
-			primaryStage.setTitle("Title of the Window");
-			
 			primaryStage.setScene(scene);
 			primaryStage.show();
 		} catch(Exception e) {
@@ -36,13 +23,5 @@ public class Main extends Application implements EventHandler<ActionEvent> {
 	
 	public static void main(String[] args) {
 		launch(args);
-	}
-
-	@Override
-	public void handle(ActionEvent event) {
-		// TODO Auto-generated method stub
-		if(event.getSource() == button) {
-			System.out.println("Button was clicked");
-		}
 	}
 }
